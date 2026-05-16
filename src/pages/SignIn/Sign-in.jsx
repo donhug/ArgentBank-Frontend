@@ -1,5 +1,6 @@
 import './Sign-in.css'
 import Input from "../../components/Input/Input.jsx";
+import {Link} from "react-router-dom";
 
 function Login() {
     return <>
@@ -25,7 +26,7 @@ function Login() {
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     {/*-- PLACEHOLDER DUE TO STATIC SITE -*/}
-                    <a href="./user.html" className="sign-in-button">Sign In</a>
+                    <Link to="/User" className="sign-in-button">Sign In</Link>
                     {/*-- SHOULD BE THE BUTTON BELOW -*/}
                     {/*<button class="sign-in-button">Sign In</button>*/}
                     {/*--  -*/}
