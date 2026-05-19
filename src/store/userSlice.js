@@ -14,7 +14,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action) => {
-            state.token = action.payload
+            state.token = action.payload.token
             state.isAuthenticated = true
         },
         setProfile: (state, action) => {

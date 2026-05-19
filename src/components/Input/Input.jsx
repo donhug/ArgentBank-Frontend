@@ -4,7 +4,12 @@ const Input=(props) => {
     return (
         <div className="input-wrapper">
             <label htmlFor={props.id}>{props.label}</label>
-            <input type={props.type} id={props.id}/>
+            <input
+                type={props.type}
+                id={props.id}
+                value={props.value}
+                onChange={props.onChange}
+            />
         </div>
     )
 }
