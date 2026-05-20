@@ -5,7 +5,7 @@ const initialState = {
     isAuthenticated: false,
     firstName: '',
     lastName: '',
-    username: '',
+    userName: '',
 }
 
 const userSlice = createSlice({
@@ -20,19 +20,48 @@ const userSlice = createSlice({
         setProfile: (state, action) => {
             state.firstName = action.payload.firstName
             state.lastName = action.payload.lastName
-            state.username = action.payload.username
+            state.userName = action.payload.userName
         },
 
         logout: (state) => {
+            localStorage.removeItem("token");
             state.token = null
             state.isAuthenticated = false
             state.firstName = ''
             state.lastName = ''
-            state.username = ''
+            state.userName = ''
+        },
+        hydrateUser:(state) =>{
+            const token = localStorage.getItem('token')
+            if (token){
+                state.token = token;
+                state.isAuthenticated = true
+            }
         },
     },
+
 })
+export const fetchProfile = () => async (dispatch, getState) => {
 
-export const { login, logout, setProfile } = userSlice.actions
+    const token = getState().user.token;
+    if (!token) return;
+    const profileResponse = await fetch(
+        'http://localhost:3001/api/v1/user/profile',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    )
 
+    const profileData = await profileResponse.json()
+
+    // stockage du profil dans le setProfil de userSlice
+    dispatch(setProfile(profileData.body))
+};
+
+
+export const { login, logout, setProfile ,hydrateUser} = userSlice.actions
 export default userSlice.reducer

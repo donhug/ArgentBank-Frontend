@@ -2,7 +2,7 @@ import './Sign-in.css'
 import Input from "../../components/Input/Input.jsx";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {login, setProfile} from "../../store/userSlice.js";
+import {login, fetchProfile} from "../../store/userSlice.js";
 import {useNavigate} from "react-router-dom";
 
 function Login() {
@@ -31,31 +31,11 @@ function Login() {
             )
 
             const loginData = await loginResponse.json()
-
             const token = loginData.body.token
-            dispatch(login({token}))
             localStorage.setItem('token', token)
-
             //token dans userSlice
             dispatch(login({ token }))
-
-
-            const profileResponse = await fetch(
-                'http://localhost:3001/api/v1/user/profile',
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-
-            const profileData = await profileResponse.json()
-
-            // stockage du profil dans le setProfil de userSlice
-            dispatch(setProfile(profileData.body))
-
+            await dispatch(fetchProfile())
             navigate('/User')
 
         } catch (error) {

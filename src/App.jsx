@@ -1,13 +1,26 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Accueil from "./pages/Accueil/Accueil.jsx";
 import SignIn from "./pages/SignIn/Sign-in.jsx";
 import User from "./pages/User/User.jsx";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {fetchProfile, hydrateUser} from "./store/userSlice.js"
 
 function App() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(hydrateUser());
+        const token = localStorage.getItem("token");
 
+        if (token) {
+            dispatch(fetchProfile());
+        }
+
+    }, [dispatch])
   return (
     <Router>
       <Header />
