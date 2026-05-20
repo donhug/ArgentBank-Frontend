@@ -1,10 +1,20 @@
 import './Header.css'
-import {Link, NavLink} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import logo from '../../assets/images/argentBankLogo.png'
 import {useSelector} from "react-redux";
+import {logout} from "../../store/userSlice.js";
+import {useDispatch} from "react-redux";
 
 function Header() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const userName = useSelector(state => state.user.userName) ;
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
+    const handleLogout = () => {
+        dispatch(logout())
+        navigate("/")
+    }
     return (
         <header>
             <nav className="main-nav">
@@ -17,14 +27,24 @@ function Header() {
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
                 <div>
-                    <Link to="/User" className="main-nav-item" >
-                        <i className="fa fa-user-circle"></i>
-                        {userName}
-                    </Link>
-                    <Link to="/Sign-In" className="main-nav-item" >
-                        <i className="fa fa-user-circle"></i>
-                        Sign-In
-                    </Link>
+                    {isAuthenticated ?(
+                        <>
+                            <button onClick={() => navigate("/User")} className="main-nav-item">
+                                <i className="fa fa-user-circle"></i>
+                                {userName}
+                            </button>
+                            <button onClick={handleLogout} className="main-nav-item">
+                                <i className="fa fa-sign-out"></i>
+                                Sign Out
+                            </button>
+                        </>
+                    ) :(
+                        <button onClick={() => navigate("/Sign-in")} className="main-nav-item" >
+                            <i className="fa fa-user-circle"></i>
+                            Sign-In
+                        </button>
+                    )}
+
 
                 </div>
             </nav>
