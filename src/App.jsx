@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchProfile, hydrateUser} from "./store/userSlice.js"
 
+
 function App() {
     const dispatch = useDispatch();
     useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Accueil />} />
             <Route path="/Sign-In" element={<SignIn />} />
-            <Route path="/User" element={<User />} />
+            <Route path="/User" element={<User />}/>
         </Routes>
       <Footer />
     </Router>

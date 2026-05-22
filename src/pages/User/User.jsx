@@ -1,10 +1,13 @@
 import './User.css'
 import Account from "../../components/Account/Account.jsx";
 import {useSelector} from "react-redux";
+import Form from "../../components/Form/Form.jsx";
+import Button from "../../components/ButtonForm/Button.jsx";
 
 function User (){
     const firstName = useSelector(state => state.user.firstName) ;
     const lastName = useSelector(state => state.user.lastName);
+
     return (
         <main className="main bg-dark">
             <div className="header">
@@ -12,7 +15,8 @@ function User (){
                     Welcome back<br/>
                     {firstName} {lastName +' !'}
                 </h1>
-                <button className="edit-button">Edit Name</button>
+                <Button txt="Edit Name"/>
+                <Form/>
             </div>
             <h2 className="sr-only">Accounts</h2>
 

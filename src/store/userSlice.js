@@ -62,6 +62,33 @@ export const fetchProfile = () => async (dispatch, getState) => {
     dispatch(setProfile(profileData.body))
 };
 
+export const changeUsername = (userName) =>async (dispatch, getState) => {
+    const token = getState().user.token;
+    if(!token) return;
+
+    try {
+        const response = await fetch(
+            'http://localhost:3001/api/v1/user/profile',
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    userName
+                }),
+            }
+        )
+        const data = await response.json();
+
+        dispatch(setProfile(data.body));
+
+    } catch (error) {
+        console.log('Erreur login :', error)
+    }
+}
+
 
 export const { login, logout, setProfile ,hydrateUser} = userSlice.actions
 export default userSlice.reducer
