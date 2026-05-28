@@ -29,7 +29,6 @@ function User (){
                     <Form setIsEditing={setIsEditing}/>
                 )}
 
-
             </div>
             <h2 className="sr-only">Accounts</h2>
 

@@ -9,6 +9,7 @@ import User from "./pages/User/User.jsx";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchProfile, hydrateUser} from "./store/userSlice.js"
+import Transaction from "./pages/Transaction/transaction.jsx";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<Accueil />} />
             <Route path="/Sign-In" element={<SignIn />} />
             <Route path="/User" element={<User />}/>
+            <Route path="/Transaction" element={<Transaction />} />
         </Routes>
       <Footer />
     </Router>

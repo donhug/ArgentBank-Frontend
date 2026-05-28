@@ -39,7 +39,6 @@ const userSlice = createSlice({
             }
         },
     },
-
 })
 export const fetchProfile = () => async (dispatch, getState) => {
 
