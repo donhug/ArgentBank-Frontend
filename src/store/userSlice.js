@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     token: null,
     isAuthenticated: false,
+    isHydrated: false,
     firstName: '',
     lastName: '',
     userName: '',
@@ -37,6 +38,7 @@ const userSlice = createSlice({
                 state.token = token;
                 state.isAuthenticated = true
             }
+            state.isHydrated = true
         },
     },
 })

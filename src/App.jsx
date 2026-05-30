@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {fetchProfile, hydrateUser} from "./store/userSlice.js"
 import Transaction from "./pages/Transaction/transaction.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 
 function App() {
@@ -29,8 +30,16 @@ function App() {
         <Routes>
             <Route path="/" element={<Accueil />} />
             <Route path="/Sign-In" element={<SignIn />} />
-            <Route path="/User" element={<User />}/>
-            <Route path="/Transaction" element={<Transaction />} />
+            <Route path="/User" element={
+                <PrivateRoute>
+                    <User />
+                </PrivateRoute>
+            }/>
+            <Route path="/Transaction" element={
+                <PrivateRoute>
+                    <Transaction />
+                </PrivateRoute>
+            }/>
         </Routes>
       <Footer />
     </Router>
