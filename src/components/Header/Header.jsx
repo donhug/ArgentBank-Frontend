@@ -1,6 +1,6 @@
 import './Header.css'
 import {Link, NavLink, useNavigate} from 'react-router-dom'
-import logo from '../../assets/images/argentBankLogo.png'
+import logo from '../../assets/images/argentBankLogo.webp'
 import {useSelector} from "react-redux";
 import {logout} from "../../store/userSlice.js";
 import {useDispatch} from "react-redux";
