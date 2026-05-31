@@ -15,7 +15,13 @@ function Account(props) {
                     <button onClick={()=>navigate(-1)} className="payout transaction-button ">X</button>
                 </div>:
                 <div className="account-content-wrapper cta">
-                    <button onClick={()=>navigate('/Transaction')} className="transaction-button">View transactions</button>
+                    <button onClick={()=>navigate('/Transaction', {
+                        state: {
+                            title: props.title,
+                            amount: props.amount,
+                            desc: props.desc
+                        }
+                    })} className="transaction-button">View transactions</button>
                 </div>
             }
         </section>

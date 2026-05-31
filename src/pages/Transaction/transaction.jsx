@@ -1,15 +1,18 @@
 import './transaction.css'
 import Account from "../../components/Account/Account.jsx";
 import Payout from "../../components/Payout/payout.jsx";
+import {useLocation} from "react-router-dom";
 
 function Transaction() {
+    const location = useLocation();
+    const { title, amount, desc } = location.state;
     return<>
         <main className="main page">
             <Account
                 transactionMode="true"
-                title="Argent Bank Checking (x8349)"
-                amount="2,082.79"
-                desc="Available Balance"
+                title={title}
+                amount={amount}
+                desc={desc}
             />
             <div className="content">
                 <div className="content-left">
