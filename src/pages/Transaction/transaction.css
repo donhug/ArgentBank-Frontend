@@ -1,0 +1,21 @@
+.content{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    border-radius:10px;
+    margin: 0 auto;
+
+}
+.content-left, .content-right{
+    display: flex;
+    gap:50px;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.content-left{
+    gap: 90px;
+}
+.balance{
+    margin-right: 60px;
+}
