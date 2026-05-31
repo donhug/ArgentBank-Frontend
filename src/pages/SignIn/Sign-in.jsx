@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 function Login() {
 
+    const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
@@ -14,8 +15,9 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault()
-
+        setError("")
         try {
+
             const loginResponse = await fetch(
                 'http://localhost:3001/api/v1/user/login',
                 {
@@ -31,6 +33,11 @@ function Login() {
             )
 
             const loginData = await loginResponse.json()
+            if(!loginResponse.ok){
+                setError("Identifiants incorrects, veuillez réessayer.")
+                return;
+            }
+
             const token = loginData.body.token
             localStorage.setItem('token', token)
             //token dans userSlice
@@ -70,6 +77,7 @@ function Login() {
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
 
+                    {error && <p className="errorsMsg">{error}</p>}
                     <button type="submit" className="sign-in-button">Sign In</button>
 
                 </form>

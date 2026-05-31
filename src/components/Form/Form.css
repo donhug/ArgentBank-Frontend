@@ -9,6 +9,7 @@
     flex-direction:column;
     justify-content:center;
     gap:10px;
+    align-items: end;
 }
 
 .form-btn{
@@ -23,4 +24,10 @@
 .form-group{
     display:flex;
     gap:10px;
+}
+.form-group input{
+    width: 35%;
+    height: 25px;
+    border-radius: 5px;
+    border: 0 transparent solid;
 }

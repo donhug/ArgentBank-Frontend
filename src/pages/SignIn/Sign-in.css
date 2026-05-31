@@ -32,3 +32,9 @@
 .input-remember label {
     margin-left: 0.25rem;
 }
+
+.errorsMsg{
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}
