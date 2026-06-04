@@ -43,7 +43,11 @@ function Form({setIsEditing}) {
 
                 <div className="form-btn">
                     <Button type="submit" txt="Save"/>
-                    <Button type="button" txt="Cancel"/>
+                    <Button
+                        onClick={()=> setIsEditing(false)}
+                        type="button"
+                        txt="Cancel"
+                    />
                 </div>
 
             </form>
